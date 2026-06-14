@@ -20,7 +20,7 @@ public struct Termios: Sendable {
 
     @inlinable
     public init() {
-        c = termios()
+        c = .init()
     }
 }
 
@@ -37,7 +37,7 @@ extension Termios {
     @inlinable
     public func apply(to fileDescriptor: borrowing FileDescriptor, when optionalActions: OptionalActions) throws(Errno) {
         let rawFileDescriptor = fileDescriptor.rawValue
-        let result: CInt = unsafe withUnsafePointer(to: c) {
+        let result = unsafe withUnsafePointer(to: c) {
             unsafe tcsetattr(rawFileDescriptor, .init(optionalActions.rawValue), $0)
         }
         guard result == 0
@@ -59,14 +59,14 @@ extension Termios {
 
     @inlinable
     public var inputBaudRate: BaudRate {
-        BaudRate(rawValue: unsafe withUnsafePointer(to: c) {
+        .init(rawValue: unsafe withUnsafePointer(to: c) {
             unsafe cfgetispeed($0)
         })
     }
 
     @inlinable
     public var outputBaudRate: BaudRate {
-        BaudRate(rawValue: unsafe withUnsafePointer(to: c) {
+        .init(rawValue: unsafe withUnsafePointer(to: c) {
             unsafe cfgetospeed($0)
         })
     }
@@ -104,7 +104,7 @@ extension Termios {
     @inlinable
     public var inputMode: InputMode {
         get {
-            InputMode(rawValue: .init(c.c_iflag))
+            .init(rawValue: .init(c.c_iflag))
         }
         set {
             c.c_iflag = .init(newValue.rawValue)
@@ -114,7 +114,7 @@ extension Termios {
     @inlinable
     public var outputMode: OutputMode {
         get {
-            OutputMode(rawValue: .init(c.c_oflag))
+            .init(rawValue: .init(c.c_oflag))
         }
         set {
             c.c_oflag = .init(newValue.rawValue)
@@ -124,7 +124,7 @@ extension Termios {
     @inlinable
     public var controlMode: ControlMode {
         get {
-            ControlMode(rawValue: .init(c.c_cflag))
+            .init(rawValue: .init(c.c_cflag))
         }
         set {
             c.c_cflag = .init(newValue.rawValue)
@@ -134,7 +134,7 @@ extension Termios {
     @inlinable
     public var localMode: LocalMode {
         get {
-            LocalMode(rawValue: .init(c.c_lflag))
+            .init(rawValue: .init(c.c_lflag))
         }
         set {
             c.c_lflag = .init(newValue.rawValue)
@@ -146,7 +146,7 @@ extension Termios {
         get {
             unsafe withUnsafeBytes(of: c.c_cc) {
                 unsafe $0.bindMemory(to: cc_t.self).map {
-                    SpecialControlCharacter(rawValue: .init($0))
+                    .init(rawValue: .init($0))
                 }
             }
         }
