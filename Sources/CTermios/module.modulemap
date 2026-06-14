@@ -1,0 +1,4 @@
+module CTermios [system] {
+    header "CTermios.h"
+    export *
+}
