@@ -1,9 +1,11 @@
 private import CTermios
 
+@frozen
 public struct QueueSelector: RawRepresentable, Sendable {
 
     public let rawValue: CInt
 
+    @inlinable
     public init(rawValue: CInt) {
         self.rawValue = rawValue
     }

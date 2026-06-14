@@ -1,9 +1,11 @@
 private import CTermios
 
+@frozen
 public struct OptionalActions: OptionSet, Sendable {
 
     public let rawValue: UInt32
 
+    @inlinable
     public init(rawValue: UInt32) {
         self.rawValue = rawValue
     }

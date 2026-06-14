@@ -1,9 +1,11 @@
 private import CTermios
 
+@frozen
 public struct LocalMode: Mode {
 
     public let rawValue: UInt
 
+    @inlinable
     public init(rawValue: UInt) {
         self.rawValue = rawValue
     }

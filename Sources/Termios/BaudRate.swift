@@ -1,9 +1,11 @@
 public import CTermios
 
+@frozen
 public struct BaudRate: RawRepresentable, Sendable {
 
     public let rawValue: CTermios::speed_t
 
+    @inlinable
     public init(rawValue: CTermios::speed_t) {
         self.rawValue = rawValue
     }
