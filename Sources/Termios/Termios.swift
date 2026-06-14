@@ -30,7 +30,7 @@ extension Termios {
     public mutating func read(from fileDescriptor: borrowing FileDescriptor) throws(Errno) {
         guard unsafe tcgetattr(fileDescriptor.rawValue, &c) == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 
@@ -42,7 +42,7 @@ extension Termios {
         }
         guard result == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 }

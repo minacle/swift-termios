@@ -334,7 +334,7 @@ private func expectBadFileDescriptor(_ operation: () throws -> Void) {
         try operation()
         Issue.record("Expected operation to throw EBADF")
     } catch let error as Errno {
-        #expect(error == Errno(rawValue: EBADF))
+        #expect(error == .init(rawValue: EBADF))
     } catch {
         Issue.record("Expected operation to throw Errno, but it threw \(error)")
     }

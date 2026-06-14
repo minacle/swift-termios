@@ -16,7 +16,7 @@ extension FileDescriptor {
     public func sendBreak(duration: CInt) throws(Errno) {
         guard tcsendbreak(rawValue, duration) == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 
@@ -24,7 +24,7 @@ extension FileDescriptor {
     public func drainOutput() throws(Errno) {
         guard tcdrain(rawValue) == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 
@@ -32,7 +32,7 @@ extension FileDescriptor {
     public func flush(_ queue: QueueSelector) throws(Errno) {
         guard tcflush(rawValue, queue.rawValue) == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 
@@ -40,7 +40,7 @@ extension FileDescriptor {
     public func controlFlow(_ action: Action) throws(Errno) {
         guard tcflow(rawValue, action.rawValue) == 0
         else {
-            throw Errno(rawValue: errno)
+            throw .init(rawValue: errno)
         }
     }
 }
