@@ -44,17 +44,21 @@ extension ControlMode {
     /// `CLOCAL`
     public static let ignoreModemStatusLines: ControlMode = .init(rawValue: .init(CTermios::CLOCAL))
 
+#if !os(Linux)
     /// `CCTS_OFLOW`
     public static let outputHardwareFlowControl: ControlMode = .init(rawValue: .init(CTermios::CCTS_OFLOW))
+#endif
 
     /// `CRTSCTS`
     public static let hardwareFlowControl: ControlMode = .init(rawValue: .init(CTermios::CRTSCTS))
 
+#if !os(Linux)
     /// `CRTS_IFLOW`
     public static let inputHardwareFlowControl: ControlMode = .init(rawValue: .init(CTermios::CRTS_IFLOW))
 
     /// `MDMBUF`
     public static let modemFlowControl: ControlMode = .init(rawValue: .init(CTermios::MDMBUF))
+#endif
 }
 
 extension ControlMode {
@@ -114,16 +118,19 @@ extension ControlMode {
         .ignoreModemStatusLines
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "outputHardwareFlowControl")
     public static var CCTS_OFLOW: ControlMode {
         .outputHardwareFlowControl
     }
+#endif
 
     @available(*, deprecated, renamed: "hardwareFlowControl")
     public static var CRTSCTS: ControlMode {
         .hardwareFlowControl
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "inputHardwareFlowControl")
     public static var CRTS_IFLOW: ControlMode {
         .inputHardwareFlowControl
@@ -133,4 +140,5 @@ extension ControlMode {
     public static var MDMBUF: ControlMode {
         .modemFlowControl
     }
+#endif
 }

@@ -17,11 +17,13 @@ extension OutputMode {
     /// `ONLCR`
     public static let mapNewlineToCarriageReturnNewline: OutputMode = .init(rawValue: .init(CTermios::ONLCR))
 
+#if !os(Linux)
     /// `OXTABS`
     public static let expandTabs: OutputMode = .init(rawValue: .init(CTermios::OXTABS))
 
     /// `ONOEOT`
     public static let discardEndOfTransmission: OutputMode = .init(rawValue: .init(CTermios::ONOEOT))
+#endif
 
     /// `OCRNL`
     public static let mapCarriageReturnToNewline: OutputMode = .init(rawValue: .init(CTermios::OCRNL))
@@ -45,6 +47,7 @@ extension OutputMode {
         .mapNewlineToCarriageReturnNewline
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "expandTabs")
     public static var OXTABS: OutputMode {
         .expandTabs
@@ -54,6 +57,7 @@ extension OutputMode {
     public static var ONOEOT: OutputMode {
         .discardEndOfTransmission
     }
+#endif
 
     @available(*, deprecated, renamed: "mapCarriageReturnToNewline")
     public static var OCRNL: OutputMode {

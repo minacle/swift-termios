@@ -1,9 +1,14 @@
+public import CTermios
+
 #if canImport(System)
 public import System
 #else
 public import SystemPackage
 #endif
-public import CTermios
+
+#if os(Linux)
+public import Glibc
+#endif
 
 // MARK: -
 

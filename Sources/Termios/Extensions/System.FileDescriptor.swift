@@ -5,6 +5,10 @@ public import SystemPackage
 #endif
 private import CTermios
 
+#if os(Linux)
+private import Glibc
+#endif
+
 extension FileDescriptor {
 
     public func sendBreak(duration: CInt) throws(Errno) {

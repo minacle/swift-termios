@@ -41,8 +41,10 @@ extension SpecialControlCharacter {
     /// `VSUSP`
     public static let suspend: SpecialControlCharacter = .init(rawValue: .init(CTermios::VSUSP))
 
+#if !os(Linux)
     /// `VDSUSP`
     public static let delayedSuspend: SpecialControlCharacter = .init(rawValue: .init(CTermios::VDSUSP))
+#endif
 
     /// `VSTART`
     public static let start: SpecialControlCharacter = .init(rawValue: .init(CTermios::VSTART))
@@ -62,8 +64,10 @@ extension SpecialControlCharacter {
     /// `VTIME`
     public static let inputTimeout: SpecialControlCharacter = .init(rawValue: .init(CTermios::VTIME))
 
+#if !os(Linux)
     /// `VSTATUS`
     public static let status: SpecialControlCharacter = .init(rawValue: .init(CTermios::VSTATUS))
+#endif
 }
 
 extension SpecialControlCharacter {
@@ -118,10 +122,12 @@ extension SpecialControlCharacter {
         .suspend
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "delayedSuspend")
     public static var VDSUSP: SpecialControlCharacter {
         .delayedSuspend
     }
+#endif
 
     @available(*, deprecated, renamed: "start")
     public static var VSTART: SpecialControlCharacter {
@@ -153,8 +159,10 @@ extension SpecialControlCharacter {
         .inputTimeout
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "status")
     public static var VSTATUS: SpecialControlCharacter {
         .status
     }
+#endif
 }

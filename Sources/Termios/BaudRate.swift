@@ -59,6 +59,7 @@ extension BaudRate {
     /// `B38400`
     public static let baud38400: BaudRate = .init(rawValue: .init(CTermios::B38400))
 
+#if !os(Linux)
     /// `B7200`
     public static let baud7200: BaudRate = .init(rawValue: .init(CTermios::B7200))
 
@@ -67,12 +68,15 @@ extension BaudRate {
 
     /// `B28800`
     public static let baud28800: BaudRate = .init(rawValue: .init(CTermios::B28800))
+#endif
 
     /// `B57600`
     public static let baud57600: BaudRate = .init(rawValue: .init(CTermios::B57600))
 
+#if !os(Linux)
     /// `B76800`
     public static let baud76800: BaudRate = .init(rawValue: .init(CTermios::B76800))
+#endif
 
     /// `B115200`
     public static let baud115200: BaudRate = .init(rawValue: .init(CTermios::B115200))
@@ -163,6 +167,7 @@ extension BaudRate {
         .baud38400
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "baud7200")
     public static var B7200: BaudRate {
         .baud7200
@@ -177,16 +182,19 @@ extension BaudRate {
     public static var B28800: BaudRate {
         .baud28800
     }
+#endif
 
     @available(*, deprecated, renamed: "baud57600")
     public static var B57600: BaudRate {
         .baud57600
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "baud76800")
     public static var B76800: BaudRate {
         .baud76800
     }
+#endif
 
     @available(*, deprecated, renamed: "baud115200")
     public static var B115200: BaudRate {

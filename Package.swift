@@ -24,7 +24,7 @@ let termiosDependencies: [Target.Dependency] = {
             package: "swift-system",
         ),
     )
-#endif // !canImport(System)
+#endif
     return dependencies
 }()
 

@@ -35,8 +35,10 @@ extension LocalMode {
     /// `ICANON`
     public static let canonicalInput: LocalMode = .init(rawValue: .init(CTermios::ICANON))
 
+#if !os(Linux)
     /// `ALTWERASE`
     public static let alternateWordErase: LocalMode = .init(rawValue: .init(CTermios::ALTWERASE))
+#endif
 
     /// `IEXTEN`
     public static let extendedInputProcessing: LocalMode = .init(rawValue: .init(CTermios::IEXTEN))
@@ -50,8 +52,10 @@ extension LocalMode {
     /// `FLUSHO`
     public static let discardOutput: LocalMode = .init(rawValue: .init(CTermios::FLUSHO))
 
+#if !os(Linux)
     /// `NOKERNINFO`
     public static let suppressKernelStatusInfo: LocalMode = .init(rawValue: .init(CTermios::NOKERNINFO))
+#endif
 
     /// `PENDIN`
     public static let reprintPendingInput: LocalMode = .init(rawValue: .init(CTermios::PENDIN))
@@ -102,10 +106,12 @@ extension LocalMode {
         .canonicalInput
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "alternateWordErase")
     public static var ALTWERASE: LocalMode {
         .alternateWordErase
     }
+#endif
 
     @available(*, deprecated, renamed: "extendedInputProcessing")
     public static var IEXTEN: LocalMode {
@@ -127,10 +133,12 @@ extension LocalMode {
         .discardOutput
     }
 
+#if !os(Linux)
     @available(*, deprecated, renamed: "suppressKernelStatusInfo")
     public static var NOKERNINFO: LocalMode {
         .suppressKernelStatusInfo
     }
+#endif
 
     @available(*, deprecated, renamed: "reprintPendingInput")
     public static var PENDIN: LocalMode {
