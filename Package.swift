@@ -46,7 +46,7 @@ let package: Package = .init(
     ],
     products: [
         .library(
-            name: "swift-termios",
+            name: "Termios",
             targets: ["Termios"]
         ),
     ],
